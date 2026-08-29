@@ -1,438 +1,408 @@
 # NexHost - Automated Server Monitoring & Billing Platform
 
-**Built with BuildWithNexClass**
+**Built with BuildWithNexClass** | Enterprise-Grade Infrastructure Management Solution
 
 ## Overview
 
-NexHost is a professional-grade SaaS platform for hosting infrastructure monitoring and automated billing. It provides real-time server monitoring, comprehensive billing management, and professional report generation for hosting companies and their clients.
+NexHost is a comprehensive Laravel-based platform for automated server monitoring, infrastructure analytics, and integrated billing systems. Designed for hosting providers, MSPs, and enterprises managing multiple servers and clients.
 
-## Key Features
+### Key Features
 
-### 1. Server Monitoring
-- Real-time performance metrics (CPU, RAM, Disk, Network)
-- Support for multiple monitoring sources:
-  - Server monitoring agents
-  - Prometheus integration
-  - UptimeRobot integration
-  - HTTP API monitoring
-  - Manual data import
-- Real-time monitoring dashboards
-- Historical time-series data and graphs
-- Professional status indicators
-- Service status tracking
-- Incident logging and analysis
+✅ **Real-time Server Monitoring**
+- CPU, Memory, Disk, and Network metrics
+- API response time tracking
+- Error rate monitoring
+- Health score calculation (0-100)
+- Historical data analysis
 
-### 2. IP Automation & Resolution
-- Automatic IP geolocation lookup
-- Hostname and reverse DNS resolution
-- ASN and network provider identification
-- Country, region, city, and timezone detection
-- No fabricated or claimed physical datacenter location
-
-### 3. Professional Reporting
-- Multi-page professional PDF reports (9-page format)
-- Real-time monitoring graphs and analytics
-- Infrastructure health scoring (0-100)
-- Service performance summaries
-- Executive summaries with real metrics only
-- Document integrity verification
-- QR code verification system
-
-### 4. Billing & Invoicing
-- All pricing in Indian Rupees (₹ INR)
+✅ **Automated Billing System**
 - Professional invoice generation
-- Support for multiple tax types (GST, CGST, SGST, IGST)
-- Flexible billing cycles (Monthly, Quarterly, Half-Yearly, Yearly)
-- Recurring billing automation
-- Payment tracking and recording
-- Detailed service itemization
-- Indian number formatting (₹5,000, ₹1,25,000)
+- Multiple service tracking
+- Tax calculation (GST support)
+- Payment recording and tracking
+- Late payment notifications
 
-### 5. Client Portal
-- Responsive client-facing dashboard
-- Server monitoring visibility
-- Report and invoice downloads
-- Payment history
-- Report verification
-- Support ticket system
+✅ **Professional Reporting**
+- Automated monthly reports
+- PDF generation with QR codes
+- Document verification and integrity checks
+- Performance metrics visualization
+- Health status analysis
 
-### 6. Admin Dashboard
-- Professional hosting control panel UI
-- Client management
-- Server management
-- Monitoring configuration
-- Report generation wizard (11-step process)
-- Billing management
-- Global search and filtering
-- Tagging system
-- Audit logging
-- Notifications and alerts
+✅ **Email Integration**
+- Automated report delivery
+- Invoice distribution
+- Payment reminders
+- Customizable email templates
 
-### 7. Automation
-- Scheduled report generation
-- Automatic invoice creation
-- Automated email delivery
-- Health score calculation
-- Performance analytics
-- Data integrity verification
+✅ **Security & Compliance**
+- PDF hash verification
+- Document tamper detection
+- Secure token-based verification
+- IP logging for verification
+- Audit trails
 
-### 8. Security
-- Role-Based Access Control (RBAC)
-- Multi-level authentication
-- CSRF and XSS protection
-- SQL injection prevention
-- Rate limiting
-- Encrypted sensitive data
-- Secure PDF storage
-- Signed download URLs
-- API token authentication for monitoring agents
-- Comprehensive audit logging
-
-## System Architecture
-
-### Monitoring Architecture
-
-```
-MonitoringProviderInterface
-├── ManualMonitoringProvider
-├── HTTPMonitoringProvider
-├── PrometheusMonitoringProvider (future)
-├── UptimeRobotMonitoringProvider (future)
-└── ServerAgentProvider (future)
-```
-
-### Health Score Calculation
-
-Default weights:
-- Uptime: 25%
-- CPU: 10%
-- RAM: 10%
-- Disk: 10%
-- Response Time: 15%
-- Error Rate: 10%
-- SSL: 5%
-- Backup: 5%
-- Database: 5%
-- Network: 5%
-
-Score ranges:
-- 90-100: Excellent
-- 75-89: Good
-- 60-74: Warning
-- 0-59: Critical
-
-### Database Schema
-
-**Core Tables:**
-- `users` - System users with roles
-- `roles` - RBAC roles
-- `permissions` - RBAC permissions
-- `clients` - Hosting clients
-- `client_contacts` - Client contact information
-- `servers` - Monitored servers
-- `server_network_info` - IP geolocation and network data
-- `server_metrics` - Time-series monitoring metrics
-- `monitoring_sources` - Monitoring provider configuration
-- `monitoring_periods` - Monitoring data collection periods
-- `service_statuses` - Service health status
-- `incidents` - Recorded incidents
-
-**Billing Tables:**
-- `products` - Service products
-- `services` - Client services
-- `pricing_items` - Service pricing
-- `invoices` - Generated invoices
-- `invoice_items` - Invoice line items
-- `payments` - Payment records
-
-**Report Tables:**
-- `reports` - Generated reports
-- `report_versions` - Report version history
-- `report_metrics` - Report metric snapshots
-- `report_charts` - Report chart data
-- `pdf_verifications` - PDF integrity verification
-
-**Operations Tables:**
-- `scheduled_reports` - Automated report scheduling
-- `email_logs` - Email delivery history
-- `notifications` - System notifications
-- `tags` - Custom tagging system
-- `taggables` - Tag relationships
-- `audit_logs` - Complete audit trail
-- `settings` - System configuration
-
-## Data Integrity Rules
-
-**CRITICAL:** NexHost never fabricates monitoring data.
-
-- No fake CPU, RAM, or disk metrics
-- No invented network traffic data
-- No fabricated uptime claims
-- No false incident records
-- No invented security events
-- Data must be clearly marked as:
-  - REAL MONITORING DATA
-  - MANUAL DATA
-  - IMPORTED DATA
-  - UNAVAILABLE DATA
-
-If data cannot be collected, display:
-- "Not available"
-- "Not monitored"
-- "Data not provided"
-
-## Report Structure (9-Page Professional PDF)
-
-**Page 1:** Cover/Header
-- NexHost branding
-- Client name
-- Billing period
-- Report and Invoice IDs
-- Server health summary
-
-**Page 2:** Client & Server Information
-- Client details and contacts
-- Server configuration
-- Network information
-- Environment details
-
-**Page 3:** Monitoring Summary
-- Health score details
-- Key metrics (CPU, RAM, Disk, Network, Uptime, API)
-- Compact professional tables
-
-**Page 4:** Performance Analytics
-- Real time-series graphs
-- CPU, RAM, Network usage
-- API response time
-- Average, peak, minimum values
-
-**Page 5:** Availability & Reliability
-- Uptime percentage and downtime
-- Incident count and duration
-- Availability target status
-- Incident table
-
-**Page 6:** Services & System Status
-- Service operational status
-- SSL certificate status
-- Backup status
-- Database health
-- Professional status indicators
-
-**Page 7:** Service Billing
-- Itemized services
-- Quantity, rate, and amount
-- Subtotal, discounts, tax
-- Grand total in INR
-
-**Page 8:** Executive Summary
-- Objective summary of real metrics only
-- Key observations
-- Performance assessment
-- Data-driven recommendations only
-
-**Page 9:** Report Verification
-- Report and Invoice IDs
-- Generated timestamp
-- SHA-256 hash
-- QR verification code
-- Verification URL
+---
 
 ## Installation
 
 ### Prerequisites
+
 - PHP 8.2+
+- Laravel 11.x
 - MySQL 8.0+
-- Redis (for queue processing)
-- Node.js 18+ (for frontend build)
+- Composer
+- Node.js 18+ (for frontend assets)
 
-### Setup
+### Setup Steps
 
-```bash
-# Clone repository
-git clone https://github.com/cashwinrewards2025-hash/nexhost.git
-cd nexhost
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/cashwinrewards2025-hash/nexhost.git
+   cd nexhost
+   ```
 
-# Install dependencies
-composer install
-npm install
+2. **Install Dependencies**
+   ```bash
+   composer install
+   npm install
+   ```
 
-# Environment setup
-cp .env.example .env
-php artisan key:generate
+3. **Configure Environment**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-# Database setup
-php artisan migrate --seed
+4. **Database Setup**
+   ```bash
+   php artisan migrate
+   php artisan db:seed
+   ```
 
-# Build frontend assets
-npm run build
+5. **Build Assets**
+   ```bash
+   npm run build
+   ```
 
-# Start services
-php artisan serve
-php artisan queue:work
+6. **Start Development Server**
+   ```bash
+   php artisan serve
+   ```
 
-# Scheduled jobs
-php artisan schedule:work
-```
-
-## Configuration
-
-### Admin Settings
-
-Configure via `/admin/settings`:
-
-- Company branding (NexHost)
-- Tagline and secondary branding
-- Logo and website
-- Tax rates (GST, CGST, SGST, IGST)
-- Invoice and Report prefixes
-- Monitoring thresholds
-- Health score weights
-- Email configuration
-- PDF security settings
-
-### Monitoring Configuration
-
-1. **Server Agent Setup**
-   - Token generation
-   - HTTPS endpoint
-   - Metric submission format
-   - Authentication
-
-2. **Prometheus Integration**
-   - Endpoint URL
-   - Metric query configuration
-   - Authentication
-
-3. **UptimeRobot Integration**
-   - API key configuration
-   - Monitor mapping
-
-## API Documentation
-
-### Monitoring Agent API
-
-**Endpoint:** `POST /api/monitoring/metrics`
-
-```json
-{
-  "server_id": "uuid",
-  "token": "monitoring_token",
-  "timestamp": "2026-08-29T11:04:00Z",
-  "metrics": {
-    "cpu_percentage": 34.5,
-    "memory_percentage": 61.2,
-    "disk_percentage": 48.7,
-    "uptime_seconds": 8640000,
-    "network_in_bytes": 1024000,
-    "network_out_bytes": 512000,
-    "api_response_time_ms": 182,
-    "load_average": 0.82,
-    "processes_running": 245,
-    "disk_io_read_mb": 1024,
-    "disk_io_write_mb": 512
-  }
-}
-```
-
-**Response:** 200 OK
-```json
-{
-  "success": true,
-  "message": "Metrics recorded",
-  "metric_id": "uuid"
-}
-```
-
-## Workflow: From Client Entry to Report Delivery
-
-1. **Admin Entry**
-   - Client IP address input
-   - Server name and type
-   - Billing period selection
-   - Service plan configuration
-
-2. **System Processing**
-   - IP geolocation and network resolution
-   - Monitoring source connection
-   - Metric collection
-   - Performance analysis
-   - Health score calculation
-   - Graph generation
-
-3. **Report Generation**
-   - Monitoring snapshot
-   - Service summary
-   - Billing calculation
-   - Professional PDF generation
-   - Document integrity hashing
-   - QR verification creation
-
-4. **Client Delivery**
-   - Professional email with attachment
-   - Report storage
-   - Invoice storage
-   - Billing history recording
-   - Verification link generation
-
-## Development
-
-### Code Style
-
-Using Laravel Pint for code formatting:
-
-```bash
-./vendor/bin/pint
-```
-
-### Testing
-
-```bash
-./vendor/bin/pest
-```
-
-### Database Migrations
-
-```bash
-php artisan make:migration create_servers_table
-php artisan migrate
-php artisan migrate:rollback
-```
-
-## Deployment
-
-See `DEPLOYMENT.md` for:
-- Production environment setup
-- SSL/TLS configuration
-- Database backup strategy
-- Queue configuration
-- Scheduled jobs
-- Monitoring and alerting
-- Scaling considerations
-
-## Security
-
-See `SECURITY.md` for:
-- Authentication and authorization
-- Data encryption
-- API security
-- PDF security
-- Audit logging
-- Compliance considerations
-
-## License
-
-MIT License - See LICENSE file for details.
-
-## Support
-
-For questions and support:
-- GitHub Issues: https://github.com/cashwinrewards2025-hash/nexhost/issues
-- Documentation: https://docs.nexhost.local
+Access the application at `http://localhost:8000`
 
 ---
 
-**NexHost - Professional Infrastructure Monitoring & Billing**
+## Architecture
 
-*Built with BuildWithNexClass*
+### Directory Structure
+
+```
+nexhost/
+├── app/
+│   ├── Http/
+│   │   └── Controllers/
+│   │       └── API/
+│   │           ├── Monitoring/
+│   │           ├── Billing/
+│   │           ├── Reports/
+│   │           └── Core/
+│   ├── Models/
+│   │   ├── Client.php
+│   │   ├── Server.php
+│   │   ├── Invoice.php
+│   │   ├── Report.php
+│   │   └── ...
+│   └── Services/
+│       ├── Monitoring/
+│       ├── Billing/
+│       ├── Reports/
+│       ├── PDF/
+│       └── Email/
+├── database/
+│   ├── migrations/
+│   ├── seeders/
+│   └── factories/
+├── routes/
+│   └── api.php
+├── config/
+│   ├── nexhost.php
+│   ├── ip.php
+│   └── mail.php
+└── ...
+```
+
+### Core Services
+
+#### 1. **Monitoring Service**
+- Real-time metric collection
+- Health score calculation
+- Historical analysis
+- Alert generation
+
+#### 2. **Billing Service**
+- Invoice generation
+- Payment tracking
+- Tax calculation
+- Financial reporting
+
+#### 3. **Report Service**
+- Automated report generation
+- Data aggregation
+- Chart generation
+- PDF export
+
+#### 4. **PDF Service**
+- Professional PDF generation
+- QR code generation
+- Document verification
+- Hash-based integrity checking
+
+#### 5. **Email Service**
+- Template-based emails
+- Batch sending
+- Delivery tracking
+- Error handling
+
+#### 6. **IP Resolution Service**
+- Geolocation lookup
+- ASN detection
+- DNS resolution
+- Provider identification
+
+---
+
+## API Endpoints
+
+### Authentication
+
+```http
+POST /api/auth/login
+POST /api/auth/register
+```
+
+### Monitoring
+
+```http
+GET    /api/monitoring/servers/{server}/metrics
+POST   /api/monitoring/servers/{server}/metrics
+GET    /api/monitoring/servers/{server}/health-score
+GET    /api/monitoring/servers/{server}/cpu
+GET    /api/monitoring/servers/{server}/memory
+GET    /api/monitoring/servers/{server}/disk
+```
+
+### Billing
+
+```http
+POST   /api/billing/clients/{client}/invoices
+GET    /api/billing/invoices/{invoice}
+GET    /api/billing/clients/{client}/invoices
+POST   /api/billing/invoices/{invoice}/payments
+GET    /api/billing/clients/{client}/payment-due
+```
+
+### Reports
+
+```http
+POST   /api/reports/servers/{server}/generate
+GET    /api/reports/reports/{report}
+GET    /api/reports/servers/{server}/reports
+GET    /api/reports/reports/{report}/pdf
+POST   /api/reports/verify
+```
+
+### Servers
+
+```http
+GET    /api/servers/clients/{client}/servers
+GET    /api/servers/{server}
+POST   /api/servers/clients/{client}/servers
+PUT    /api/servers/{server}
+DELETE /api/servers/{server}
+```
+
+---
+
+## Database Schema
+
+### Core Tables
+
+- **clients** - Client information and totals
+- **servers** - Server definitions and metadata
+- **server_metrics** - Time-series metric data
+- **invoices** - Invoice records
+- **invoice_items** - Individual invoice line items
+- **reports** - Generated reports
+- **report_metrics** - Report-specific metrics
+- **report_charts** - Report visualizations
+- **pdf_verifications** - PDF integrity tracking
+- **email_logs** - Email delivery tracking
+- **server_network_infos** - Geolocation and network data
+
+---
+
+## Configuration
+
+### Environment Variables
+
+```env
+# Application
+APP_NAME=NexHost
+APP_ENV=production
+APP_KEY=
+APP_DEBUG=false
+
+# Database
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nexhost
+DB_USERNAME=root
+DB_PASSWORD=
+
+# Mail
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_FROM_ADDRESS=noreply@nexhost.com
+
+# Monitoring
+MONITORING_ENABLED=true
+MONITORING_HTTP_ENABLED=false
+
+# Features
+BILLING_ENABLED=true
+REPORTING_ENABLED=true
+PDF_GENERATION_ENABLED=true
+EMAIL_NOTIFICATIONS_ENABLED=true
+
+# IP Services
+IPSTACK_API_KEY=your_key_here
+IPINFO_API_KEY=your_key_here
+```
+
+---
+
+## Development
+
+### Running Tests
+
+```bash
+# Run all tests
+php artisan test
+
+# Run with coverage
+php artisan test --coverage
+```
+
+### Database Seeding
+
+```bash
+# Seed the database
+php artisan db:seed
+
+# Seed specific seeder
+php artisan db:seed --class=ClientSeeder
+```
+
+### Code Quality
+
+```bash
+# Run static analysis
+php artisan pint
+
+# Run linter
+php artisan phpstan
+```
+
+---
+
+## Deployment
+
+### Production Checklist
+
+- [ ] Set `APP_DEBUG=false`
+- [ ] Configure database backups
+- [ ] Set up email service (Mailgun, SendGrid, etc.)
+- [ ] Configure IP service API keys
+- [ ] Set PDF security passwords
+- [ ] Enable HTTPS/SSL
+- [ ] Configure firewall rules
+- [ ] Set up monitoring/alerting
+- [ ] Configure log rotation
+- [ ] Set up automated backups
+
+### Docker Deployment
+
+```bash
+# Build Docker image
+docker build -t nexhost .
+
+# Run container
+docker run -d -p 8000:8000 nexhost
+```
+
+---
+
+## Monitoring
+
+### Health Check Metrics
+
+The platform calculates health scores based on:
+- **Uptime** (25%) - Server availability
+- **CPU** (10%) - Processor usage
+- **Memory** (10%) - RAM utilization
+- **Disk** (10%) - Storage usage
+- **Response Time** (15%) - API latency
+- **Error Rate** (10%) - Application errors
+- **SSL** (5%) - Certificate validity
+- **Backup** (5%) - Backup status
+- **Database** (5%) - Database health
+- **Network** (5%) - Network connectivity
+
+---
+
+## Support & Contribution
+
+### Getting Help
+
+- 📖 [Documentation](./docs)
+- 🐛 [Report Issues](https://github.com/cashwinrewards2025-hash/nexhost/issues)
+- 💬 [Discussions](https://github.com/cashwinrewards2025-hash/nexhost/discussions)
+
+### Contributing
+
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request
+
+---
+
+## License
+
+This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
+
+---
+
+## Acknowledgments
+
+- **Built with BuildWithNexClass** - Advanced platform development framework
+- **Laravel Framework** - Elegant PHP web framework
+- **Community Contributors** - Feedback and improvements
+
+---
+
+## Contact
+
+- **Email**: support@nexhost.com
+- **Website**: https://nexhost.com
+- **GitHub**: https://github.com/cashwinrewards2025-hash/nexhost
+
+---
+
+**Last Updated**: August 29, 2026
+**Version**: 1.0.0
